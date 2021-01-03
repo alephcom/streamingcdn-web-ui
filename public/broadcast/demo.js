@@ -1,6 +1,7 @@
 let divSelectRoom = document.getElementById("selectRoom")
 let inputstreamKey = document.getElementById("streamkey")
-let createSessionButton = document.getElementsByClassName('createSessionButton')
+let createSessionButton = document.getElementById('createSessionButton')
+let stopSessionButton = document.getElementById('stopSessionButton')
 let videoText = document.getElementById("videoText")
 
 let streamKey, encryptedSdp, remoteSessionDescription
@@ -35,6 +36,8 @@ let displayVideo = video => {
 
     document.getElementById('localVideos').appendChild(el)
     document.getElementById('localVideos').removeAttribute("hidden")
+
+    stopSessionButton.removeAttribute("hidden")
     return video
 }
 
@@ -78,7 +81,7 @@ window.createSession = isPublisher => {
         if (isPublisher) {
             navigator.mediaDevices.getUserMedia(videoConstraints)
                 .then(stream => {
-                    videoText.style = "visibility: visible"
+                    videoText.removeAttribute("hidden")
                     stream.getTracks().forEach(function(track) {
                         pc.addTrack(track, stream);
                     });
@@ -92,7 +95,7 @@ window.createSession = isPublisher => {
         window.startSession = () => {
             let sd = remoteSessionDescription
             if (sd === '') {
-                return alert('Session Description must not be empty')
+                return alert('Session ID must not be empty')
             }
             try {
                 pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(atob(sd))))
@@ -101,18 +104,22 @@ window.createSession = isPublisher => {
             }
         }
 
-        let btns = createSessionButton
-        for (let i = 0; i < btns.length; i++) {
-            btns[i].style = 'display: none'
-        }
-        divSelectRoom.style = "display: none"
+        createSessionButton.setAttribute("hidden","true")
+        divSelectRoom.setAttribute("hidden","true")
     }
 }
 
 function stopVideoSession() {
-    var el = document.getElementById('videoBroadcast');
+    let el = document.getElementById('videoBroadcast')
+    document.getElementById('localVideos').setAttribute("hidden","true")
     let mediaStream = el.srcObject;
     let tracks = mediaStream.getTracks();
     tracks[0].stop();
     tracks.forEach(track => track.stop());
+    el.remove()
+
+    createSessionButton.removeAttribute("hidden")
+    stopSessionButton.setAttribute("hidden", "true")
+    videoText.setAttribute("hidden", "true")
+    divSelectRoom.removeAttribute("hidden")
 }

@@ -38,23 +38,20 @@
                     Video Broadcast
                 </div>
                 <div class="card-body">
-                    <div id="videoText" style="visibility: hidden">
+                    <div id="videoText" hidden>
                         Video:
                     </div>
-                    <br />
                     <div id="localVideos" class="embed-responsive embed-responsive-16by9" hidden>
 
                     </div>
-                    <br/>
                     <div id="selectRoom">
                         <div class="form-group">
-                            <label for="streamKey">Session Key (demo)</label>
-                            <input class="form-control" type="text" id="streamkey"/>
+                            <label for="streamKey">Session ID (demo)</label>
+                            <input placeholder="ID" class="form-control" type="text" id="streamkey"/>
                         </div>
                     </div>
-                    <br/>
-                    <button class="createSessionButton btn btn-primary" onclick="window.createSession(true)">Begin Broadcast </button>
-                    <button class="stopSessionButton btn btn-primary" onclick="stopVideoSession()">Stop Broadcast </button>
+                    <button id="createSessionButton" class="btn btn-primary" onclick="window.createSession(true)">Begin Broadcast </button>
+                    <button id="stopSessionButton" class="btn btn-primary" onclick="stopVideoSession()" hidden>Stop Broadcast </button>
                 </div>
             </div>
         </div>
