@@ -2,27 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Broadcast</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
 </head>
 <body>
-<br />
-<div id="videoText" style="visibility: hidden">
-    Video:
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">GoLang WebRTC Streaming</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Broadcast</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/viewer/">Viewer</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-white bg-primary">
+                    Video Broadcast
+                </div>
+                <div class="card-body">
+                    <div id="videoText" style="visibility: hidden">
+                        Video:
+                    </div>
+                    <br />
+                    <div id="localVideos" class="embed-responsive embed-responsive-16by9" hidden>
+
+                    </div>
+                    <br/>
+                    <div id="selectRoom">
+                        <div class="form-group">
+                            <label for="streamKey">Session Key (demo)</label>
+                            <input class="form-control" type="text" id="streamkey"/>
+                        </div>
+                    </div>
+                    <br/>
+                    <button class="createSessionButton btn btn-primary" onclick="window.createSession(true)">Begin Broadcast </button>
+                    <button class="stopSessionButton btn btn-primary" onclick="stopVideoSession()">Stop Broadcast </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    Logs<br />
+    <div id="logs"></div>
 </div>
-<br />
-<div id="localVideos"></div>
-<br/>
-<div id="selectRoom">
-    <label>Session Key (demo)</label>
-    <input type="text" id="streamkey"/>
-</div>
-<br/>
-<button class="createSessionButton" onclick="window.createSession(true)">Begin Broadcast </button><br />
-<br />
-<button class="stopSessionButton" onclick="window">Stop Broadcast </button><br />
-<br />
-Logs<br />
-<div id="logs"></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
 <script src="demo.js"></script>
 </body>
 </html>

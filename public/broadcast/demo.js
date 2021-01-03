@@ -30,8 +30,11 @@ let displayVideo = video => {
     el.muted = true
     el.width = 160
     el.height = 120
+    el.setAttribute("id", "videoBroadcast")
+    el.classList.add("embed-responsive-item")
 
     document.getElementById('localVideos').appendChild(el)
+    document.getElementById('localVideos').removeAttribute("hidden")
     return video
 }
 
@@ -104,4 +107,12 @@ window.createSession = isPublisher => {
         }
         divSelectRoom.style = "display: none"
     }
+}
+
+function stopVideoSession() {
+    var el = document.getElementById('videoBroadcast');
+    let mediaStream = el.srcObject;
+    let tracks = mediaStream.getTracks();
+    tracks[0].stop();
+    tracks.forEach(track => track.stop());
 }
