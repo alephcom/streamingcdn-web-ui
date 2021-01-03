@@ -10,12 +10,17 @@ var log = msg => {
     document.getElementById('logs').innerHTML += msg + '<br>'
 }
 
-const hdConstraints = {
+const videoConstraints = {
     audio: true,
     video: {
         width: { max: 1920, ideal: 1280 },
         height: { max: 1080, ideal: 720 }
     }
+};
+
+const audioConstraints = {
+    audio: true,
+    video: false,
 };
 
 let displayVideo = video => {
@@ -52,6 +57,7 @@ function postRequest () {
         window.startSession()
     })();
 }
+
 window.createSession = isPublisher => {
     if (inputstreamKey.value === '') {
         alert("Please enter a something unique.")
@@ -67,7 +73,7 @@ window.createSession = isPublisher => {
         }
 
         if (isPublisher) {
-            navigator.mediaDevices.getUserMedia(hdConstraints)
+            navigator.mediaDevices.getUserMedia(videoConstraints)
                 .then(stream => {
                     videoText.style = "visibility: visible"
                     stream.getTracks().forEach(function(track) {

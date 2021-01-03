@@ -1,0 +1,7 @@
+{
+  "audioPort": 4000,
+  "videoPort": 4002,
+  "destinationType": "icecast",
+  "destinationUrl": "icecast://source:live@icecast.local:8000/live",
+  "destinationFormat": "mp3"
+}

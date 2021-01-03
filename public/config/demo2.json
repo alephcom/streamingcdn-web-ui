@@ -1,0 +1,7 @@
+{
+  "audioPort": 62000,
+  "videoPort": 65002,
+  "destinationType": "rtmp",
+  "destionationUrl" : "rtmp://rtmpserver.local:1935/live/demo2?mount=demo2",
+  "destinationFormat" : "flv"
+}
